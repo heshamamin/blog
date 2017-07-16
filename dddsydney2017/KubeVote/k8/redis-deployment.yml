@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  # Unique key of the Deployment instance
+  name: redis-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: redis
+      labels:
+        env: dev
+        app: vote
+        role: redis
+    spec:
+      containers:
+      - image: redis
+        name: redis

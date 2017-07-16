@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  # Unique key of the Deployment instance
+  name: vote-deployment
+spec:
+  # 3 Pods should exist at all times.
+  replicas: 10
+  # Keep record of 2 revisions for rollback
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        # Apply this label to pods and default
+        # the Deployment label selector to this value
+        env: dev
+        app: vote
+        role: web
+    spec:
+      containers:
+      - name: kubevote
+        # Run this image
+        image: 514374710223.dkr.ecr.ap-southeast-2.amazonaws.com/kubevote:latest

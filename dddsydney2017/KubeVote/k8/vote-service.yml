@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  # Unique key of the Service instance
+  name: vote
+spec:
+  ports:
+    # Accept traffic sent to port 6379
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    env: dev
+    app: vote
+    role: web
+  type: LoadBalancer
